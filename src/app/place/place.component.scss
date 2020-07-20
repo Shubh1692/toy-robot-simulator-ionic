@@ -1,0 +1,19 @@
+ion-item { 
+    position: relative !important;
+    margin-bottom: 15px !important;
+    overflow: visible;
+    width: 100% !important;
+    .error {
+      position: absolute !important;
+      font-size: small !important;
+      bottom: -15px !important;
+      color: red;
+    }
+}
+
+
+.place-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }

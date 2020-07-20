@@ -6,28 +6,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-ion-col {
-  background-color: red;
-  outline: 1px solid black;
-  padding: 0;
-  margin: 0;
+  ion-icon {
+    font-size: xxx-large !important;
+  }
 }
 ion-grid {
   position: relative;
   padding: 0;
   max-width: 500px;
+  margin: 10px;
+  ion-col {
+    background-color: red;
+    outline: 1px solid black;
+    padding: 0;
+    margin: 0;
+  }
 }
-ion-icon {
-  font-size: xxx-large !important;
+ion-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --ion-background-color: #D3D3D3 !important;
 }
 
-ion-item { 
-  position: relative;
-  margin-bottom: 10px;
-  .error {
-    position: absolute;
-    font-size: xx-small;
-    bottom: -10;
-  }
+.place-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

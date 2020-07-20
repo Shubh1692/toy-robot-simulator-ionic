@@ -6,6 +6,11 @@
         <ion-title>
             Place the toy
         </ion-title>
+        <ion-buttons slot="end">
+            <ion-button color="dark" (click)="onCancel()">
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
@@ -46,8 +51,7 @@
             <ion-row>
                 <ion-item appearance="fill">
                     <ion-label position="stacked">Face</ion-label>
-                    <ion-select formControlName="face" required>
-                        <ion-select-option value="">Select</ion-select-option>
+                    <ion-select placeholder="Select" interface="action-sheet"  formControlName="face" required>
                         <ion-select-option *ngFor="let face of faces" [value]="face.value" [innerText]="face.name">
                         </ion-select-option>
                     </ion-select>

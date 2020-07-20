@@ -7,6 +7,7 @@ import { ModalController } from '@ionic/angular';
 @Component({
     selector: 'app-place',
     templateUrl: 'place.component.html',
+    styleUrls: ['place.component.scss'],
 })
 export class PlaceComponent {
     placeForm: FormGroup;

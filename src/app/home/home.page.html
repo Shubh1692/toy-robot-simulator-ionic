@@ -3,11 +3,9 @@
     <ion-title>
       Toy Simulator App
     </ion-title>
-
     <ion-button slot="end" size="small" [disabled]="face" color="primary" (click)="openPlaceDialog()">
       Place
     </ion-button>
-
   </ion-toolbar>
   <ion-toolbar>
     <ion-button slot="end" size="small" [disabled]="face === null" class="mr-5" color="primary"
@@ -26,7 +24,7 @@
       Report
     </ion-button>
     <!-- Reset action set initial values for toy placement style and face set to null -->
-    <ion-button slot="end" size="small" [disabled]="face === null" color="primary" (click)="face = null;toyPosition = {
+    <ion-button slot="end" size="small" [disabled]="face === null" color="danger" (click)="face = null;toyPosition = {
         left: '0px',
         bottom: '0px',
         transform: 'rotate(0deg)',
@@ -38,15 +36,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"  padding="true">
-  <ion-grid #toyTable>
+<ion-content [fullscreen]="true"  [scrollEvents]="false" padding="true">
+  <ion-grid #toyTable slot="fixed">
     <ion-row [ngStyle]="{height: tableRowHeight + 'px'}" *ngFor="let tile of totalTableToyCardsRow;">
       <ion-col *ngFor="let tile of totalTableToyCardsColumn; let i = index;">
       </ion-col>
     </ion-row>
     <!--Toy tile show when face direction is exist after placement -->
     <div class="toy-tile" [ngStyle]="toyPosition">
-      <ion-icon name="man-outline"></ion-icon>
+      <ion-icon [ngStyle]="toyIconFace" name="man-outline"></ion-icon>
     </div>
   </ion-grid>
 </ion-content>

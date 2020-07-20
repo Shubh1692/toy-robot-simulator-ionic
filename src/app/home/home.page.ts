@@ -12,7 +12,6 @@ export class HomePage {
   toyPosition = { // Initial position of toy hide on table before place
     left: '0px',
     bottom: '0px',
-    transform: 'rotate(0deg)',
     display: 'none',
     transition: '1s',
     height: '0px'
@@ -20,6 +19,10 @@ export class HomePage {
   face: number | null = null;  // Initial position of toy
   @ViewChild('toyTable') toyTableInstance: IonGrid | any; // Table toy grid instance
   tableRowHeight = 0;
+  toyIconFace = {
+    transform: 'rotate(0deg)',
+    transition: '1s',
+  };
   constructor(private modalController: ModalController, private alertController: AlertController) {
   }
 
@@ -42,7 +45,7 @@ export class HomePage {
     const toyTableWidth = this.toyTableInstance.el.offsetWidth;
     let left = Number(this.toyPosition.left.split('px')[0]);
     let bottom = Number(this.toyPosition.bottom.split('px')[0]);
-    switch (this.face) {
+    switch ((this.face + 360) % 360) {
       case 0:
         bottom = bottom + (toyTableHeight / 5);
         break;
@@ -76,7 +79,6 @@ export class HomePage {
   async openPlaceDialog() {
     const modal = await this.modalController.create({
       component: PlaceComponent,
-      cssClass: 'my-custom-class'
     });
     await modal.present();
     const { data: result } = await modal.onWillDismiss();
@@ -95,6 +97,11 @@ export class HomePage {
         bottom,
         transition: '1s',
         display: 'flex',
+      }
+    };
+    this.toyIconFace = {
+      ...this.toyIconFace,
+      ...{
         transform: `rotate(${this.face}deg)`,
       }
     };
@@ -113,23 +120,16 @@ export class HomePage {
         this.face = this.face - 90;
         break;
     }
-    const rotationFactor = (this.face / 90);
-    if (rotationFactor >= 4) {
-      this.face = (rotationFactor - 4) * 90;
-    } else if (rotationFactor < 0) {
-      this.face = (rotationFactor + 4) * 90;
-    }
-    this.toyPosition = {
-      ...this.toyPosition,
+    this.toyIconFace = {
+      ...this.toyIconFace,
       ...{
-        transition: '1s',
         transform: `rotate(${this.face}deg)`,
       }
     };
   }
 
   /**
-   * This method used to show current state of toy in action sheet
+   * This method used to show current state of toy in ionic alert
    */
   // tslint:disable-next-line: typedef
   async showReport() {
@@ -155,13 +155,10 @@ export class HomePage {
         break;
     }
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
       header: 'Report',
-      subHeader: 'Subtitle',
       message: `Toy is placed at ${xPosition} X Position, ${yPosition} Y Position with ${face} Face`,
       buttons: ['OK']
     });
-
     await alert.present();
   }
 }
