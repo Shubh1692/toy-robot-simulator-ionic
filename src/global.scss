@@ -24,3 +24,22 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+ion-item { 
+    position: relative !important;
+    margin-bottom: 10px !important;
+    overflow: visible;
+    width: 100% !important;
+    .error {
+      position: absolute !important;
+      font-size: xx-small !important;
+      bottom: -10px !important;
+      color: red;
+    }
+}
+
+.place-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

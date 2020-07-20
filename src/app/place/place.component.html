@@ -1,0 +1,65 @@
+<!--This form used for set placement values of toy-->
+
+
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            Place the toy
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+    <form [formGroup]="placeForm" (ngSubmit)="onSubmit()">
+        <ion-grid>
+            <ion-row>
+                <ion-item>
+                    <ion-label position="stacked">X Position</ion-label>
+                    <ion-input type="number" formControlName="x" placeholder="X Position"></ion-input>
+                    <!--X position validation errors-->
+                    <div class="error" *ngIf="(placeForm.get('x').dirty || formSubmitted) && placeForm.get('x').hasError('required')">Please enter X position of toy
+                    </div>
+                    <div class="error" *ngIf="(placeForm.get('x').dirty || formSubmitted) && placeForm.get('x').hasError('max')">Please enter value less than or equal
+                        to 5
+                    </div>
+                    <div class="error" *ngIf="(placeForm.get('x').dirty || formSubmitted) && placeForm.get('x').hasError('min')">Please enter value grater than or
+                        equal to
+                        0
+                    </div>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label position="stacked">Y Position</ion-label>
+                    <!--Y position validation errors-->
+                    <ion-input type="number" formControlName="y" placeholder="Y Position"></ion-input>
+                    <div class="error" *ngIf="(placeForm.get('y').dirty || formSubmitted) && placeForm.get('y').hasError('required')">Please enter Y position of toy
+                    </div>
+                    <div class="error" *ngIf="(placeForm.get('y').dirty || formSubmitted) && placeForm.get('y').hasError('max')">Please enter value less than or equal
+                        to 5
+                    </div>
+                    <div class="error" *ngIf="(placeForm.get('y').dirty || formSubmitted) && placeForm.get('y').hasError('min')">Please enter value grater than or
+                        equal to
+                        0
+                    </div>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item appearance="fill">
+                    <ion-label position="stacked">Face</ion-label>
+                    <ion-select formControlName="face" required>
+                        <ion-select-option value="">Select</ion-select-option>
+                        <ion-select-option *ngFor="let face of faces" [value]="face.value" [innerText]="face.name">
+                        </ion-select-option>
+                    </ion-select>
+                    <!--Face validation errors-->
+                    <div class="error" *ngIf="(placeForm.get('face').dirty || formSubmitted) && placeForm.get('face').hasError('required')">Please choose face of toy
+                    </div>
+                </ion-item>
+            </ion-row>
+            <ion-row class="place-buttons">
+                <ion-button fill="solid" color="danger" (click)="onCancel()">Cancel</ion-button>
+                <ion-button fill="solid" type="submit" cdkFocusInitial>Place</ion-button>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

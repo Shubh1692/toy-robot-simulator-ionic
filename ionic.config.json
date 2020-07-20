@@ -1,7 +1,8 @@
 {
   "name": "toy-robot-simulator",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
