@@ -27,11 +27,9 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
-    const toyTableHeight = this.toyTableInstance.el.offsetHeight;
     const toyTableWidth = this.toyTableInstance.el.offsetWidth;
     this.tableRowHeight = toyTableWidth / 5;
     this.toyPosition.height = `${this.tableRowHeight}px`;
-    console.log(this.toyTableInstance, { toyTableHeight, toyTableWidth });
   }
 
 
@@ -140,7 +138,7 @@ export class HomePage {
     const bottom = Number(this.toyPosition.bottom.split('px')[0]);
     const xPosition = Math.floor((((left * 100) / toyTableWidth) / 20)) + 1;
     const yPosition = Math.floor((((bottom * 100) / toyTableHeight) / 20)) + 1;
-    switch (this.face) {
+    switch ((this.face + 360) % 360) {
       case 0:
         face = 'North';
         break;
